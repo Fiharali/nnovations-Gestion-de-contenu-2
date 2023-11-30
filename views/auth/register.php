@@ -7,7 +7,7 @@ if (!empty($_SESSION['name'])) {
 		header("Location: " . $_SERVER['HTTP_REFERER']);
 		exit();
 	} else {
-		header("Location:/youcode/dash/index.php");
+		header("Location:/youcode/dash/views/client/index.php");
 		exit();
 	}
 }
@@ -19,12 +19,12 @@ if (!empty($_POST['name']) && strlen(trim($_POST['name'])) > 2 && !empty($_POST[
 		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 		$emailCheck = mysqli_query($conn, "select email from users where email = '$email'");
 		if (!(mysqli_num_rows($emailCheck) > 0)) {
-			$stmt = "INSERT INTO `users`( `name`, `email`, `password`) VALUES ('$name','$email','$password')";
+			$stmt = "INSERT INTO `users`( `name`, `email`, `password`,role_id) VALUES ('$name','$email','$password',3)";
 			mysqli_query($conn, $stmt);
-			// var_dump($name);
-			session_start() ;
 			$_SESSION['name'] = $name;  
-			header("Location: ../../index.php");
+			$_SESSION['role'] = "client"; 
+            $_SESSION['id']=mysqli_insert_id($conn); 
+            header("Location:../../views/client/index.php");
 			$check = "success";
 		} else {
 			$check = "error";
@@ -76,7 +76,7 @@ if (!empty($_POST['name']) && strlen(trim($_POST['name'])) > 2 && !empty($_POST[
                 <div class="user-box">
                     <input type="submit" name="submit" value="Register"  class="w-full p-2 m-6   text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  border-2 border-white rounded-full dark:border-gray-800">
                 </div>
-                you have account <a href="login.php" class="ms-2 text-blue-500">Here</a>
+                you have account <a href="login.php" class="text-blue-500 ms-2">Here</a>
             </form>
         </div>
 

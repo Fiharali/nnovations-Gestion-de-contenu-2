@@ -6,7 +6,8 @@ if (!empty($_SESSION['name'])) {
 		header("Location: " . $_SERVER['HTTP_REFERER']);
 		exit();
 	} else {
-		header("Location:/youcode/dash/index.php");
+        header("Location:/youcode/dash/views/client/index.php");
+
 		exit();
 	}
 }
@@ -14,18 +15,22 @@ if (isset($_POST['submit'])) {
     if (!empty($_POST['email']) && !empty($_POST['password']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $result = mysqli_query($conn, "select * from users where email = '$email'");
+        $result = mysqli_query($conn, "select users.* , role.name as 'role' from users inner join role on role.id=users.role_id where email = '$email'");
 
         if (mysqli_num_rows($result) > 0) {
             $checkUser = mysqli_fetch_array($result, MYSQLI_ASSOC);
             if (password_verify($password, $checkUser["password"])) {
-                // var_dump($checkUser['isAdmin']);
-				// $_SESSION['isAdmin'] = false;
-				// if($checkUser['isAdmin']==1){
-				// 	$_SESSION['isAdmin'] = true;
-				// }
-                $_SESSION['name'] = $checkUser['name'];
-                header("Location:../../index.php");
+				$_SESSION['role'] = $checkUser['role'];
+				$_SESSION['name'] = $checkUser['name'];
+				$_SESSION['id'] = $checkUser['id'];
+                // echo $checkUser['id']."   ".$checkUser['name']."  ".$_SESSION['role'];
+				if($checkUser['role_id'] == 1 ||$checkUser['role_id'] == 2 ){  
+                    header("Location:../../index.php");
+                    // echo 'admin';
+				}else{
+                    // echo 'not admin';
+                    header("Location:../../views/client/index.php");
+                }
                 $check = "success";
             } else {
                 $check = "error";
