@@ -20,10 +20,10 @@ if (isset($_POST['submit'])) {
             $checkUser = mysqli_fetch_array($result, MYSQLI_ASSOC);
             if (password_verify($password, $checkUser["password"])) {
                 // var_dump($checkUser['isAdmin']);
-				$_SESSION['isAdmin'] = false;
-				if($checkUser['isAdmin']==1){
-					$_SESSION['isAdmin'] = true;
-				}
+				// $_SESSION['isAdmin'] = false;
+				// if($checkUser['isAdmin']==1){
+				// 	$_SESSION['isAdmin'] = true;
+				// }
                 $_SESSION['name'] = $checkUser['name'];
                 header("Location:../../index.php");
                 $check = "success";
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
                     <input type="submit" name="submit" value="Login"
                         class="w-full p-2 m-6   text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  border-2 border-white rounded-full dark:border-gray-800">
                 </div>
-                you d'ont have account <a href="register.php" class="ms-2 text-blue-500">Here</a>
+                you d'ont have account <a href="register.php" class="text-blue-500 ms-2">Here</a>
 
             </form>
         </div>

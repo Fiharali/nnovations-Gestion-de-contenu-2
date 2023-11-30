@@ -115,10 +115,11 @@ while ($chefRow = $resultChef->fetch_array()) {
                         <lord-icon src=" https://cdn.lordicon.com/zfzufhzk.json" trigger="hover"
                             style="width:30px;height:30px">
                         </lord-icon>
+                        
                     </button>
                     <form method="post">
                         <input type="hidden" name="id" value="<?= $row['id'] ?>" />
-                        <button type="submit" name="delete" <?=($_SESSION['isAdmin']==true ) ? ""  : 'disabled'?>>
+                        <button type="submit" name="delete">
                             <lord-icon src="https://cdn.lordicon.com/xekbkxul.json" trigger="hover"
                                 style="width:30px;height:30px">
                             </lord-icon>

@@ -35,21 +35,21 @@
 							<a class="nav-link hoverAfter " aria-current="page" href="#">Home</a>
 						</li>
 						<li class="nav-item me-5 ">
-							<a class="nav-link hoverAfter " aria-current="page" href="Service/Service.html">Services
+							<a class="nav-link hoverAfter " aria-current="page" href="#">Services
 							</a>
 						</li>
 						<li class="nav-item me-5">
-							<a class="nav-link hoverAfter " aria-current="page" href="Contact/Contact.html">Contact</a>
+							<a class="nav-link hoverAfter " aria-current="page" href="#">Contact</a>
 						</li>
 						<li class="nav-item me-5">
-							<a class="nav-link hoverAfter " aria-current="page" href="AboutUs/About.html">About</a>
+							<a class="nav-link hoverAfter " aria-current="page" href="#">About</a>
 						</li>
 						<li class="nav-item me-5">
 							<a class="nav-link " aria-current="page" href="#"><i
 									class="fa-solid fa-magnifying-glass"></i></a>
 						</li>
 						<li class="nav-item me-5 ">
-							<a class="nav-link loginBtn" aria-current="page" href="singIN/sing.html">Login</a>
+							<a class="nav-link loginBtn" aria-current="page" href="#">Login</a>
 						</li>
 					</ul>
 				</div>

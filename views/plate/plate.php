@@ -12,17 +12,17 @@ while ($chefRow = $resultChef->fetch_array()) {
 
 ?>
 
-<div class="relative overflow-x-auto  sm:rounded-lg md:ml-64 w2/3 md:px-32 mt-10">
+<div class="relative mt-10 overflow-x-auto sm:rounded-lg md:ml-64 w2/3 md:px-32">
     <div id="default-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <div class="relative w-full max-w-2xl max-h-full p-4">
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-900">
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                         <?php echo  $lang['AddMenu'] ?>
                     </h3>
                     <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="default-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -32,7 +32,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <div class="py-1 px-4 mx-auto max-w-2xl lg:py-16">
+                <div class="max-w-2xl px-4 py-1 mx-auto lg:py-16">
                     <form method="post" id="submitForm">
                         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                             <div class="sm:col-span-2">
@@ -62,7 +62,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     placeholder="<?php echo  $lang['placeholderMenuPrice'] ?>">
                             </div>
-                            <div class=" sm:col-span-2 mt-12">
+                            <div class="mt-12  sm:col-span-2">
                                 <input type="submit" name="submit"
                                     class="bg-gray-100 dark:bg-gray-900  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             </div>
@@ -77,8 +77,8 @@ while ($chefRow = $resultChef->fetch_array()) {
         <lord-icon src="https://cdn.lordicon.com/pdsourfn.json" trigger="hover" style="width:35px;height:35px">
         </lord-icon>
     </button>
-    <!-- <div class="h-96 max-h-full hover:max-h-screen"> -->
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400  sm:mx-auto " id="myTable">
+    <!-- <div class="max-h-full h-96 hover:max-h-screen"> -->
+    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400 sm:mx-auto " id="myTable">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 ">
@@ -107,9 +107,9 @@ while ($chefRow = $resultChef->fetch_array()) {
 				while ($row = $resultMenu->fetch_assoc()) {
 			?>
             <tr
-                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                    class="px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">
                     <?= $row['id'] ?>
                 </th>
                 <td class="px-6 py-4">
@@ -121,7 +121,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                 <td class="px-6 py-4">
                     <?= $row['price'] ?>
                 </td>
-                <td class="px-6 py-4 flex ml-auto">
+                <td class="flex px-6 py-4 ml-auto">
                     <button type="button" data-modal-target="updateModal<?= $row['id'] ?>"
                         data-modal-toggle="updateModal<?= $row['id'] ?>" type="button" class="mx-4">
                         <lord-icon src=" https://cdn.lordicon.com/zfzufhzk.json" trigger="hover"
@@ -130,7 +130,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                     </button>
                     <form method="post">
                         <input type="hidden" name="id" value="<?= $row['id'] ?>" />
-                        <button type="submit" name="delete" <?=($_SESSION['isAdmin']==true ) ? ""  : 'disabled'?>>
+                        <button type="submit" name="delete">
                             <lord-icon src="https://cdn.lordicon.com/xekbkxul.json" trigger="hover"
                                 style="width:30px;height:30px">
                             </lord-icon>
@@ -142,15 +142,15 @@ while ($chefRow = $resultChef->fetch_array()) {
             </tr>
             <div id="updateModal<?= $row['id'] ?>" tabindex="-1" aria-hidden="true"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                <div class="relative p-4 w-full max-w-2xl max-h-full">
+                <div class="relative w-full max-w-2xl max-h-full p-4">
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-900">
                         <div
-                            class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                 <?php echo  $lang['UEmploye'] ?>
                             </h3>
                             <button type="button"
-                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
                                 data-modal-hide="updateModal<?= $row['id'] ?>">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
@@ -160,7 +160,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                                 <span class="sr-only">Close modal</span>
                             </button>
                         </div>
-                        <div class="py-1 px-4 mx-auto max-w-2xl lg:py-16">
+                        <div class="max-w-2xl px-4 py-1 mx-auto lg:py-16">
                             <form method="post">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>" />
                                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -191,7 +191,7 @@ while ($chefRow = $resultChef->fetch_array()) {
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                             placeholder="<?php echo  $lang['placeholderMenuPrice'] ?>">
                                     </div>
-                                    <div class="sm:col-span-2 mt-12">
+                                    <div class="mt-12 sm:col-span-2">
                                         <input type="submit" name="submitUpdate"
                                             class="bg-gray-100 dark:bg-gray-900  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     </div>
@@ -205,9 +205,9 @@ while ($chefRow = $resultChef->fetch_array()) {
 			} else {
 				?>
             <tr
-                class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
                 <th colspan="5"
-                    class=" px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                    class="px-6 py-4 font-medium text-center text-gray-900  whitespace-nowrap dark:text-white">
                     <?php echo  $lang['data'] ?>
                 </th>
             </tr>
