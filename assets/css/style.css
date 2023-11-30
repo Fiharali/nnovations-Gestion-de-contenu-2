@@ -1,0 +1,71 @@
+body,
+* {
+  scroll-behavior: smooth;
+}
+
+html.dark .dataTables_wrapper .dataTables_length select {
+  width: 50px !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  width: 100px !important;
+  display: none !important;
+}
+.dataTables_wrapper .dataTables_length label {
+  display: none !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  width: 100% !important;
+  height: 40px !important;
+  margin-block: 30px !important;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  width: 100%;
+}
+
+/* .dataTables_wrapper .dataTables_filter label {
+  display: none !important;
+} */
+
+.dataTables_wrapper .dataTables_info {
+  display: none !important;
+}
+
+/* .dataTables_wrapper .dataTables_paginate {
+color: red !important;
+background-color: red !important;
+margin: 0 auto !important;
+display: none;
+}
+
+
+#myTable_paginate{
+	background-color: blue;
+display: none;
+
+} */
+
+/* .h-96.max-h-full::-webkit-scrollbar {
+	display: none;
+  } */
+
+
+  /* .h-96.max-h-full {
+    overflow: scroll;
+    scrollbar-color: transparent transparent;  
+} 
+
+.h-96.max-h-full::-webkit-scrollbar {
+    width: 12px; 
+}
+
+.h-96.max-h-full::-webkit-scrollbar-thumb {
+    background-color: transparent;  
+}
+
+.h-96.max-h-full::-webkit-scrollbar-track {
+    background-color: transparent;  
+} */
+
