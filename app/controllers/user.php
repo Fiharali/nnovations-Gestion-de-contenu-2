@@ -13,10 +13,15 @@ $error = array(
 function all()
 {
     global $conn;
-    $sql = allUsers();
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare(allUsers());
+    $stmt->execute();
 
-    return $result;
+    $result = $stmt->get_result();
+    $numRows = $result->num_rows;
+    if ($numRows > 0) {
+        $searchResults = $result->fetch_all(MYSQLI_ASSOC);
+        return $searchResults;
+    } 
 }
 
 
@@ -63,7 +68,7 @@ function add($name, $email, $password, $role)
         $stmt = $conn->prepare(createUsers());
         $stmt->bind_param("sssi", $name, $email, $password, $role);
         $stmt->execute();
-    $stmt->close();
+        $stmt->close();
 
         $check = "success";
     } else {
@@ -78,7 +83,7 @@ function edit($id)
     $stmt = $conn->prepare(editUser());
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    
+
     $result = $stmt->get_result();
     $stmt->close();
     if ($result->num_rows > 0) {
@@ -87,8 +92,6 @@ function edit($id)
     } else {
         return null;
     }
-  
-
 }
 
 function update($name, $email, $password, $role, $id)
@@ -97,7 +100,7 @@ function update($name, $email, $password, $role, $id)
     global $error;
     global $check;
 
-    $error['name'] = "";
+   
 
     if (empty($name)) {
         $error['name'] = "name is required";
@@ -133,7 +136,10 @@ function update($name, $email, $password, $role, $id)
         $stmt->execute();
         $stmt->close();
         $check = "success";
-        header('location:../views/chefs/chefs.php');
+
+        // header('location:index.php');
+        echo '<script>window.location.href = "index.php";</script>';
+        exit();
     } else {
         $check = "error";
     }
@@ -147,5 +153,29 @@ function delete($id)
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
-    header('location:chefs.php');
+    header('location:index.php');
+}
+
+
+function search($word)
+{
+    global $conn;
+    $stmt = $conn->prepare(searchUser());
+    $searchTerm = "%" . $word . "%";
+    $stmt->bind_param("sss", $searchTerm,$searchTerm,$searchTerm);
+    $stmt->execute();
+    
+
+    
+    $result = $stmt->get_result();
+    $numRows = $result->num_rows;
+    if ($numRows > 0) {
+        $searchResults = $result->fetch_all(MYSQLI_ASSOC);
+        return $searchResults;
+    } 
+
+
+  
+
+    // header('location:index.php');
 }

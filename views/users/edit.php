@@ -4,14 +4,13 @@
 include '../../app/controllers/user.php';
 //  include '../../partials/navbar.php';
 
-// $result = all();
 
 if (isset($_POST['id'])) {
     $getId =  $_POST['id'];
     $user = edit($getId);
     require_once '../../partials/navbar.php';
 } else {
-    header('location:chefs.php');
+    header('location:index.php');   
 }
 
 
@@ -19,10 +18,6 @@ if (isset($_POST['update'])) {
     update($_POST['name'], $_POST['email'], $_POST['name'], $_POST['selectRole'],$_POST['id']);
 
 } 
-
-
-
-
 
 
 

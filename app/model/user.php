@@ -35,3 +35,11 @@ function deleteUser()
     $sql = "delete from users WHERE id = ?";
     return $sql;
 }
+
+
+
+function searchUser()
+{   
+    $sql = "SELECT users.*,role.name as 'role' FROM users inner join role on role.id = users.role_id WHERE users.id LIKE ? OR users.name LIKE ? OR users.email LIKE ?";
+    return $sql;
+}
