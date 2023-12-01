@@ -12,6 +12,7 @@ if (!empty($_SESSION['name'])) {
 	}
 }
 
+
 if (isset($_POST['submit'])) {
 if (!empty($_POST['name']) && strlen(trim($_POST['name'])) > 2 && !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && !empty($_POST['password']) && !empty($_POST['confirm_password']) && strlen($_POST['confirm_password']) > 7 && $_POST['confirm_password'] === $_POST['password']) {
 		$name = $_POST['name'];

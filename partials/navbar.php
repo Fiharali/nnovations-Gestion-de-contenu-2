@@ -1,7 +1,7 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
+//if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
+//}
 
 $_SESSION['lang'] = $_SESSION['lang'] ?? 'en';
 
@@ -15,9 +15,9 @@ if ($_SESSION['lang'] == 'en') {
     require 'lang/fr.php';
 }
 // $_SESSION[ 'name' ] = '';
-if (empty($_SESSION['name'])) {
-    header('Location:/youcode/dash/views/auth/login.php');
-}
+// if (empty($_SESSION['name'])) {
+//     header('Location:/youcode/dash/views/auth/login.php');
+// }
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ if (empty($_SESSION['name'])) {
 <body class='bg-gray-100 dark:bg-gray-700'>
     <button data-drawer-target='default-sidebar' data-drawer-toggle='default-sidebar' aria-controls='default-sidebar'
         type='button'
-        class='inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'>
+        class='inline-flex items-center p-2 mt-2 text-sm text-gray-500 rounded-lg ms-3 md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'>
         <span class='sr-only'>Open sidebar</span>
         <svg class='w-6 h-6' aria-hidden='true' fill='currentColor' viewBox='0 0 20 20'
             xmlns='http://www.w3.org/2000/svg'>
@@ -57,7 +57,7 @@ if (empty($_SESSION['name'])) {
         class='fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full md:translate-x-0'
         aria-label='Sidebar'>
         <div class='h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800'>
-            <h1 class='text-center text-2xl dark:text-slate-50  text-gray-500  p-5'>
+            <h1 class='p-5 text-2xl text-center text-gray-500 dark:text-slate-50'>
                 <?=isset($_SESSION['name']) ? $_SESSION['name']  : 'LOGO'?>
             </h1>
             <ul class='space-y-2 font-medium'>
@@ -133,11 +133,11 @@ if (empty($_SESSION['name'])) {
         </div>
     </aside>
     <nav
-        class="bg-white border-gray-200 dark:bg-gray-900 md:ml-64 text-slate-50 sticky top-0 z-10 p-5 flex flex-wrap justify-between  gap-y-10 mx-auto">
+        class="sticky top-0 z-10 flex flex-wrap justify-between p-5 mx-auto bg-white border-gray-200 dark:bg-gray-900 md:ml-64 text-slate-50 gap-y-10">
 
         <form class="w-2/4 mx-auto " method="get">
             <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -146,19 +146,18 @@ if (empty($_SESSION['name'])) {
                 </div>
                 <input type="search" value="<?php echo isset($_GET['searchInput']) ? $_GET['searchInput'] : ''; ?>"
                     name="searchInput" id="default-search"
-                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="<?php echo $lang['search'] ?>">
                 <button type="submit" name="searchSubmit"
                     class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "><?php echo $lang['searchW'] ?></button>
             </div>
         </form>
-        <div class="flex items-center md:order-2 space-x-1 md:space-x-0 rtl:space-x-reverse   mx-auto">
+        <div class="flex items-center mx-auto space-x-1 md:order-2 md:space-x-0 rtl:space-x-reverse">
             <button type="button" data-dropdown-toggle="language-dropdown-menu"
-                class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                 <?php if ($_SESSION['lang'] == 'fr') {
     ?>
-                <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/<svg class=" w-5
-                    h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/<svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 600">
                     <rect width="300" height="600" fill="#0055a4" />
                     <rect width="300" height="600" x="300" fill="#fff" />
@@ -208,7 +207,7 @@ if (empty($_SESSION['name'])) {
                             role="menuitem">
                             <div class="inline-flex items-center">
                                 <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/<svg class=" w-5 h-5 rounded-full me-3"
+                                    xmlns="http://www.w3.org/2000/<svg class="w-5 h-5 rounded-full me-3"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 600">
                                     <rect width="300" height="600" fill="#0055a4" />
