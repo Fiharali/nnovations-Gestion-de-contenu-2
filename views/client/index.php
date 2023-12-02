@@ -59,7 +59,7 @@ session_start();
 								<?php
 							}else{
 								?>
-								<a class="nav-link loginBtn" aria-current="page" href="../../views/auth/logout.php">Logout</a>
+								<a class="nav-link loginBtn" aria-current="page" href="../../app/controllers/auth/logout.php">Logout</a>
 								<?php
 								
 							}

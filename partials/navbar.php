@@ -120,7 +120,7 @@ if ($_SESSION['lang'] == 'en') {
                     </a>
                 </li>
                 <li>
-                    <a href='/youcode/dash/views/auth/logout.php'
+                    <a href='/youcode/dash/app/controllers/auth/logout.php'
                         class='flex items-center p-3 m-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'>
                         <lord-icon src='https://cdn.lordicon.com/iivdalhg.json' trigger='hover' state=''
                             style='width:25px;height:25px'>

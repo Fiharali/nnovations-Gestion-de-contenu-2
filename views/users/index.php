@@ -11,12 +11,11 @@ if (isset($_POST['submit'])) {
 }
 
 if (isset($_POST['edit'])) {
-   $user= edit($_POST['id']);
-  
+    $user = edit($_POST['id']);
 }
 if (isset($_GET['searchSubmit'])) {
-    $result= search($_GET['searchInput']);
- }
+    $result = search($_GET['searchInput']);
+}
 
 
 ?>
@@ -24,7 +23,7 @@ if (isset($_GET['searchSubmit'])) {
 
 
 <div class="relative mt-10 overflow-x-auto sm:rounded-lg md:ml-64 w2/3 md:px-32">
-   <?php include 'add.php'; ?>
+    <?php include 'add.php'; ?>
     <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400 sm:mx-auto " id="myTable">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -48,31 +47,36 @@ if (isset($_GET['searchSubmit'])) {
         <tbody>
 
             <?php
-                if (count($result) > 0) {
-                    foreach ($result as $row) {
+            if ($result) {
+                foreach ($result as $row) {
 
-                ?>
-                        <tr class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">
-                                <?= $row['id'] ?>
-                            </th>
-                            <td class="px-6 py-4">
-                                <?= $row['name'] ?>
-                            </td>
-                            <td class="px-6 py-4">
-                                <?= $row['email'] ?>
-                            </td>
-                            <td class="px-6 py-4">
+            ?>
+                    <tr class="border-b odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-center text-gray-900 whitespace-nowrap dark:text-white">
+                            <?= $row['id'] ?>
+                        </th>
+                        <td class="px-6 py-4">
+                            <?= $row['name'] ?>
+                        </td>
+                        <td class="px-6 py-4">
+                            <?= $row['email'] ?>
+                        </td>
+                        <td class="px-6 py-4">
+
+                            <span class="<?= ($row['role_id'] == 1)  ? 'bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300' : (($row['role_id'] == 2)                                                    ? 'bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300'                                                    : 'bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300') ?>">
                                 <?= $row['role'] ?>
-                            </td>
-                            <td class="flex px-6 py-4 ml-auto">
-                           
+                            </span>
+
+
+                        </td>
+                        <td class="flex px-6 py-4 ml-auto">
+
                             <form method="post" action="edit.php">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>" />
                                 <button type="submit" name="edit" data-modal-target="updateModal<?= $row['id'] ?>" data-modal-toggle="updateModal<?= $row['id'] ?>" type="button" class="mx-4">
-                                <lord-icon src=" https://cdn.lordicon.com/zfzufhzk.json" trigger="hover" style="width:30px;height:30px">
-                                </lord-icon>
-                            </button>
+                                    <lord-icon src=" https://cdn.lordicon.com/zfzufhzk.json" trigger="hover" style="width:30px;height:30px">
+                                    </lord-icon>
+                                </button>
                             </form>
                             <form method="post" action="delete.php">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>" />

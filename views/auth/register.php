@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../../database/connection.php';
+include '../../app/controllers/auth/register.php';
 
 if (!empty($_SESSION['name'])) {
 	if (isset($_SERVER['HTTP_REFERER'])) {
@@ -14,25 +15,8 @@ if (!empty($_SESSION['name'])) {
 
 
 if (isset($_POST['submit'])) {
-if (!empty($_POST['name']) && strlen(trim($_POST['name'])) > 2 && !empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && !empty($_POST['password']) && !empty($_POST['confirm_password']) && strlen($_POST['confirm_password']) > 7 && $_POST['confirm_password'] === $_POST['password']) {
-		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-		$emailCheck = mysqli_query($conn, "select email from users where email = '$email'");
-		if (!(mysqli_num_rows($emailCheck) > 0)) {
-			$stmt = "INSERT INTO `users`( `name`, `email`, `password`,role_id) VALUES ('$name','$email','$password',3)";
-			mysqli_query($conn, $stmt);
-			$_SESSION['name'] = $name;  
-			$_SESSION['role'] = "client"; 
-            $_SESSION['id']=mysqli_insert_id($conn); 
-            header("Location:../../views/client/index.php");
-			$check = "success";
-		} else {
-			$check = "error";
-		}
-	} else {
-		$check = "error";
-	}
+    register($_POST['name'],$_POST['email'],$_POST['password'],$_POST['confirm_password']);
+
 }
 
 
@@ -58,19 +42,23 @@ if (!empty($_POST['name']) && strlen(trim($_POST['name'])) > 2 && !empty($_POST[
             <h2 class="text-3xl">Register</h2>
             <form method="post" autocomplete="on">
                 <div class="user-box">
+                <span><?= isset($_POST['name']) ? $error['name'] : ''; ?></span>
                     <input type="text" name="name" value="<?php echo isset($_POST['submit']) ? $_POST['name'] : ''; ?>">
                     <label>Name</label>
                 </div>
                 <div class="user-box">
+                <span><?= isset($_POST['email']) ? $error['email'] : ''; ?></span>
                     <input type="text" name="email"
                         value="<?php echo isset($_POST['submit']) ? $_POST['email'] : ''; ?>">
                     <label>Email</label>
                 </div>
                 <div class="user-box">
+                <span><?= isset($_POST['password']) ? $error['password'] : ''; ?></span>
                     <input type="password" name="password">
                     <label>Password</label>
                 </div>
                 <div class="user-box">
+                <span><?= isset($_POST['confirm_password']) ? $error['cPassword'] : ''; ?></span>
                     <input type="password" name="confirm_password">
                     <label>Confirm Password</label>
                 </div>
