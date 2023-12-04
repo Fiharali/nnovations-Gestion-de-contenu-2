@@ -72,7 +72,7 @@ if ($_SESSION['lang'] == 'en') {
                 </li>
 
                 <li>
-                    <a href='#'
+                    <a href='/youcode/dash/views/users/index.php'
                         class='flex items-center p-3 m-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'>
                         <lord-icon src='https://cdn.lordicon.com/mebvgwrs.json' trigger='hover'
                             style='width:25px;height:25px'>
@@ -157,7 +157,8 @@ if ($_SESSION['lang'] == 'en') {
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                 <?php if ($_SESSION['lang'] == 'fr') {
     ?>
-                <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/<svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/<svg class=" w-5
+                    h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 600">
                     <rect width="300" height="600" fill="#0055a4" />
                     <rect width="300" height="600" x="300" fill="#fff" />
@@ -207,7 +208,7 @@ if ($_SESSION['lang'] == 'en') {
                             role="menuitem">
                             <div class="inline-flex items-center">
                                 <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/<svg class="w-5 h-5 rounded-full me-3"
+                                    xmlns="http://www.w3.org/2000/<svg class=" w-5 h-5 rounded-full me-3"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 900 600">
                                     <rect width="300" height="600" fill="#0055a4" />
