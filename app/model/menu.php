@@ -27,23 +27,29 @@ function createMenu()
 }
 
 
-function editUser()
+function editMenu()
 {   
     $sql = "select * from menu where id = ?";
     return $sql;
 }
 
 
-function updateUser()
+function updateMenu()
 {   
-    $sql = "UPDATE `menu` SET `name`=?,`user_id`=? WHERE id = ?";
+    $sql = "UPDATE `menu` SET `name`=?,`chef_id`=? WHERE id = ?";
     return $sql;
 }
 
 
-function deleteUser()
+function deleteMenu()
 {   
     $sql = "delete from menu WHERE id = ?";
+    return $sql;
+}
+
+function searchMenu()
+{   
+    $sql = "SELECT menu.*,users.name as 'chef' FROM menu inner join users on users.id = menu.chef_id WHERE menu.id LIKE ? OR menu.name LIKE ? OR users.name  LIKE ?";
     return $sql;
 }
 

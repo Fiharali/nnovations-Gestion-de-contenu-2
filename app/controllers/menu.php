@@ -79,7 +79,7 @@ function edit($id)
 {
     global $conn;
 
-    $stmt = $conn->prepare(editUser());
+    $stmt = $conn->prepare(editMenu());
     $stmt->bind_param("i", $id);
     $stmt->execute();
 
@@ -93,7 +93,7 @@ function edit($id)
     }
 }
 
-function update($name, $email, $password, $role, $id)
+function update($name, $chef,$id)
 {
     global $conn;
     global $error;
@@ -109,29 +109,16 @@ function update($name, $email, $password, $role, $id)
         $error['name'] = "";
     }
 
-    if (empty($email)) {
-        $error['email'] = "email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error['email'] = "email mast be validate Email";
-    } else {
-        $error['email'] = "";
+  
+
+
+    if (empty($chef)) {
+        $error['selectChef'] = "selectChef is required";
     }
 
-    if (empty($password)) {
-        $error['password'] = "password is required";
-        // } elseif (strlen($password) < 7) {
-        //     $error['password'] = "password  must be >= 8";
-    } else {
-        $error['password'] = "";
-    }
-
-    if (empty($role)) {
-        $error['role'] = "role is required";
-    }
-
-    if (empty($error['name']) && empty($error['email']) && empty($error['role']) && empty($error['password'])) {
-        $stmt = $conn->prepare(updateUser());
-        $stmt->bind_param("sssii", $name, $email, $password, $role, $id);
+    if (empty($error['name']) && empty($error['selectChef'])) {
+        $stmt = $conn->prepare(updateMenu());
+        $stmt->bind_param("sii", $name, $chef,$id);
         $stmt->execute();
         $stmt->close();
         $check = "success";
@@ -148,7 +135,7 @@ function update($name, $email, $password, $role, $id)
 function delete($id)
 {
     global $conn;
-    $stmt = $conn->prepare(deleteUser());
+    $stmt = $conn->prepare(deleteMenu());
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
@@ -159,7 +146,7 @@ function delete($id)
 function search($word)
 {
     global $conn;
-    $stmt = $conn->prepare(searchUser());
+    $stmt = $conn->prepare(searchMenu());
     $searchTerm = "%" . $word . "%";
     $stmt->bind_param("sss", $searchTerm,$searchTerm,$searchTerm);
     $stmt->execute();
