@@ -115,7 +115,7 @@ function edit($id)
     }
 }
 
-function update($name , $price,$image,$menu,$id)
+function update($name , $menu,$image,$price,$id)
 {
     global $conn;
     global $error;
@@ -161,6 +161,8 @@ function update($name , $price,$image,$menu,$id)
         $stmt->execute();
         $stmt->close();
         $check = "success";
+        // header('location:index.php');   
+        // echo '<script>window.location.href = "index.php";</script>';
     } else {
         $check = "error";
     }
@@ -170,7 +172,7 @@ function update($name , $price,$image,$menu,$id)
 function delete($id)
 {
     global $conn;
-    $stmt = $conn->prepare(deleteMenu());
+    $stmt = $conn->prepare(deletePlate());
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();

@@ -36,14 +36,14 @@ function editPlate()
 
 function updateplate()
 {   
-    $sql = "UPDATE `plate` SET `name`=?,`menu_id`=? `price`=?,`image`=?, WHERE id = ?";
+    $sql = "UPDATE `plate` SET `name`=?,`menu_id`=?,`image`=?,`price`=? WHERE id=?";
     return $sql;
 }
 
 
-function deleteMenu()
+function deletePlate()
 {   
-    $sql = "delete from menu WHERE id = ?";
+    $sql = "delete from plate WHERE id = ?";
     return $sql;
 }
 

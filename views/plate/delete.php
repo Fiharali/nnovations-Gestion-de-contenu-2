@@ -1,12 +1,13 @@
 <?php
 
 
-include '../../app/controllers/menu.php';
+include '../../app/controllers/plate.php';
 
 
 if (isset($_POST['id'])) {
     $getId =  $_POST['id'];
-   delete($getId);  
+    delete($getId); 
+    
 
 } else {
     header('location:chefs.php');

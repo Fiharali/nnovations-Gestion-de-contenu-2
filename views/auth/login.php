@@ -37,14 +37,14 @@ if (isset($_POST['submit'])) {
             <h2 class="text-3xl">Login</h2>
             <form method="post">
                 <div class="user-box">
-                <span><?= isset($_POST['email']) ? $error['email'] : ''; ?></span>
+                    <span><?= isset($_POST['email']) ? $error['email'] : ''; ?></span>
 
                     <input type="text" name="email"
                         value="<?php echo isset($_POST['submit']) ? $_POST['email'] : ''; ?>">
                     <label>Email</label>
                 </div>
                 <div class="user-box">
-                <span><?= isset($_POST['password']) ? $error['password'] : ''; ?></span>
+                    <span><?= isset($_POST['password']) ? $error['password'] : ''; ?></span>
                     <input type="password" name="password">
                     <label>Password</label>
 
