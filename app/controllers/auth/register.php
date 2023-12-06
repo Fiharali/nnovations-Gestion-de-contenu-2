@@ -64,11 +64,15 @@ function register($name, $email, $password, $cPassword)
             } else {
                 header("location:../../views/client/index.php");
             }
+            $check = "success";
             $stmt->close();
+        }else{
+            $check = "error";
+            $error['email'] = "email deja exist";
         }
 
 
-        $check = "success";
+        
     } else {
         $check = "error";
     }

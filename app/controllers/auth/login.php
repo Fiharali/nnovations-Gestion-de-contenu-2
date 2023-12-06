@@ -53,12 +53,15 @@ function login($email, $password)
                     header("location:../../views/users/index.php");
                 } else {
                     header("location:../../views/client/index.php");
+                    // echo $_SESSION['role'] ;
                 }
             } else {
                 $error['password'] = "password is incorrect ";
+                $check = "error";
             }
         } else {
             $error['email'] = "email is not registered";
+            $check = "error";
             return null;
         }
     } else {

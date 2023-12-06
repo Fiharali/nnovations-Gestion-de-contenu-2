@@ -1,389 +1,402 @@
-<?php 
+<?php
 
 session_start();
 
-?><!DOCTYPE html>
+include '../../app/controllers/plate.php';
+include '../../app/controllers/commend.php';
+
+$result = all();
+
+if(isset($_POST['add'])){
+    addCommend($_POST['quantity'],$_POST['quantity'],$_POST['quantity'],$_POST['quantity']);
+}
+
+
+
+?>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="../../assets/assets/css/about.css"> -->
-	<link rel="stylesheet" href="../../assets/css/home.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=B612:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,200;1,9..40,300;1,9..40,400&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/media.css">
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.css' rel='stylesheet' />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home</title>
 </head>
 
 <body>
-	<header class="container-fluid first-section">
-		<nav class="navbar navbar-expand-lg ">
-			<div class="container">
-				<a class="navbar-brand " href="#"><img src="../../assets/images/logo3.png" alt="logo" ></a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse " id="navbarNavDropdown">
-					<ul class="navbar-nav me-5">
-						<li class="nav-item me-5">
-							<a class="nav-link hoverAfter " aria-current="page" href="#">Home</a>
-						</li>
-						<li class="nav-item me-5 ">
-							<a class="nav-link hoverAfter " aria-current="page" href="#">Services
-							</a>
-						</li>
-						<li class="nav-item me-5">
-							<a class="nav-link hoverAfter " aria-current="page" href="#">Contact</a>
-						</li>
-						<li class="nav-item me-5">
-							<a class="nav-link hoverAfter " aria-current="page" href="#">About</a>
-						</li>
-						<li class="nav-item me-5">
-							<a class="nav-link " aria-current="page" href="#"><i
-									class="fa-solid fa-magnifying-glass"></i></a>
-						</li>
-						<li class="nav-item me-5 ">
-							<?php 
-							if(!isset($_SESSION['name'])){
-								?>
-								<a class="nav-link loginBtn" aria-current="page" href="../../views/auth/login.php">Login</a>
-								<?php
-							}else{
-								?>
-								<a class="nav-link loginBtn" aria-current="page" href="../../app/controllers/auth/logout.php">Logout</a>
-								<?php
-								
-							}
-							?>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- <img src="images/smoke.png" class="smoke smoke1" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke2" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke3" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke4" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke5" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke6" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke1" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke2" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke3" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke4" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke5" alt="smoke">
-		<img src="images/smoke.png" class="smoke smoke6" alt="smoke"> -->
 
-	</header>
-	<!-- end first section  -->
-	<!-- start second section  -->
-	<div class="container mt-5 second-section">
-		<div class="row ms-5 d-flex justify-content-center">
-			<div class="my-5 col-lg-4 col-md-6 col-sm-12 row ps-5">
-				<i class="fa-solid fa-cart-shopping col-4"></i>
-				<div class="pt-3 col-8">
-					<h1>Discount Voucher</h1>
-					<p>often simply referred to as <br> a voucher or coupon</p>
-				</div>
-			</div>
-			<div class="my-5 col-lg-4 col-md-6 col-sm-12 row ps-5">
-				<i class="fa-solid fa-bowl-food col-4"></i>
-				<div class="pt-3 col-8">
-					<h1>Healthy Fresh Food</h1>
-					<p>to attract customers, boost <br> and promote customer loyalty</p>
-				</div>
-			</div>
-			<div class="my-5 col-lg-4 col-md-6 col-sm-12 row ps-5">
-				<i class="fa-solid fa-bell-concierge col-4"></i>
-				<div class="pt-3 col-8">
-					<h1>Fast Service On Table</h1>
-					<p>service approach in the <br> or food service industry</p>
-				</div>
-			</div>
+    <!-------------------------- Start Navbar  -------------------------->
+    <div class="navbar">
+        <div class="container">
+            <h1 class="logo">
+                <a href="index.html">ali</a>
+            </h1>
 
-		</div>
-	</div>
-	<!-- end second section  -->
-	<!-- start third section  -->
-	<div class="container third-section ">
-		<h1 class="m-5 menuTitle">Browse Our Menu</h1>
+            <ul class="links">
+                <i class="fa-solid fa-xmark"></i>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#chefs">Chefs</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li data-modal-target="default-modal" data-modal-toggle="default-modal">
+                    <lord-icon src="https://cdn.lordicon.com/cosvjkbu.json" trigger="loop" delay="1000"
+                        style="width:40px;height:40px">
+                    </lord-icon>
+                </li>
+            </ul>
 
-		<div class="mx-auto row d-flex justify-content-center">
-			<div class="my-5 col-lg-3 col-md-6 col-sm-12">
-				<img src="/../../assets/images/menu2.png" alt="" srcset="">
-				<h1>Burger</h1>
-				<p>Delicious and spicy </p>
-				<span>$15.00</span>
-				<small><a href="../Product/Product.html">+</a></small>
-			</div>
-			<div class="my-5 col-lg-3 col-md-6 col-sm-12">
-				<img src="../../assets/images/menu1.png" alt="" srcset="">
-				<h1>Burger</h1>
-				<p>Delicious and spicy </p>
-				<span>$15.00</span>
-				<small><a href="Product/Product.html">+</a></small>
+            <div class="mode">
 
-			</div>
-			<div class="my-5 col-lg-3 col-md-6 col-sm-12">
-				<img src="../../assets/images/menu2.png" alt="" srcset="">
-				<h1>Burger</h1>
-				<p>Delicious and spicy </p>
-				<span>$15.00</span>
-				<small><a href="Product/Product.html">+</a></small>
+                <?php if (!empty($_SESSION['name'])) { ?>
 
-			</div>
-			<div class="my-5 col-lg-3 col-md-6 col-sm-12">
-				<img src="../../assets/images/menu2.png" alt="" srcset="">
-				<h1>Burger</h1>
-				<p>Delicious and spicy </p>
-				<span>$15.00</span>
-				<small><a href="Product/Product.html">+</a></small>
+                <button type="button"
+                    class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
 
-			</div>
+                    <a href="../../app/controllers/auth/logout.php">Logout</a>
+                </button>
 
-		</div>
-	</div>
-	<!-- end third section  -->
-	<!-- start forth section  -->
-	<div class="mt-5 container-fluid forth-section ">
-		<h1 class="mt-5">Why We Are The Best</h1>
-		<div class="container pb-lg-5">
-			<div class="py-4 row d-flex justify-content-center pb-lg-5">
-				<div class="m-3 col-lg-4 col-md-6 col-ms-12">
-					<i class="fa-solid fa-plate-wheat"></i>
-					<h1>Prickly Pear Tonic</h1>
-					<p>Lorem Ipsum is simply dummy text of <br> the printing and typesetting industry. <br> Lorem Ipsum
-						dummy text</p>
-					<span>Read More</span>
-				</div>
-				<div class="m-3 col-lg-4 col-md-6 col-ms-12">
-					<i class="fa-solid fa-plate-wheat"></i>
-					<h1>Prickly Pear Tonic</h1>
-					<p>Lorem Ipsum is simply dummy text of <br> the printing and typesetting industry. <br> Lorem Ipsum
-						dummy text</p>
-					<span>Read More</span>
-				</div>
-				<div class="m-3 col-lg-4 col-md-6 col-ms-12">
-					<i class="fa-solid fa-plate-wheat"></i>
-					<h1>Prickly Pear Tonic</h1>
-					<p>Lorem Ipsum is simply dummy text of <br> the printing and typesetting industry. <br> Lorem Ipsum
-						dummy text</p>
-					<span>Read More</span>
-				</div>
-			</div>
-		</div>
+                <?php } else { ?>
+                <button type="button"
+                    class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"><a
+                        href="../auth/login.php">Login</a></button>
+                <?php
+
+                } ?>
+
+            </div>
+        </div>
+    </div>
+    <!-------------------------- End Navbar  -------------------------->
+
+    <!-------------------------- Start home  -------------------------->
+    <div id="home" class="section-bg">
+        <div class="container">
+            <div class="home-content">
+                <h2>Enjoy Your Healthy
+                    <br>Delicious Food
+                </h2>
+                <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum
+                    quaerat. </p>
+
+                <div class="btn-group">
+                    <a class="btn-main" href="#contact">Book a Table</a>
+                    <a class="btn-video" href="https://youtube.com" target="_blank">
+                        <div class="icon">
+                            <i class="fa-solid fa-play"></i>
+                        </div> Watch a video
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="home-image">
+                <img src="../../assets/images/hero-img.png"
+                    alt="A black dish filled with a colorful assortment of fresh vegetables and bread.">
+            </div>
+        </div>
+    </div>
+    <!-------------------------- End home  -------------------------->
+
+    <!-------------------------- Start chefs  -------------------------->
+    <div id="chefs" class="section-bg-w-d">
+        <div class="container margin-container">
+            <div class="main-title">
+                <h2>CHEFS</h2>
+                <p>Our<span> Professional </span>Chefs</p>
+            </div>
+
+            <div class="chefs-cards">
+                <div class="card section-bg-content ">
+                    <div class="card-image">
+                        <img src="../../assets/images/chefs/chefs-1.jpg" alt="chef-Walter White">
+                    </div>
+                    <div class="card-content">
+                        <h3>Walter White </h3>
+                        <p class="first-p">Master Chef </p>
+                        <p><em> Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut.
+                                Ipsum
+                                exercitationem iure minima enim corporis et voluptate.</em> </p>
+                    </div>
+                    <ul class="hover_links">
+                        <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="http://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        </li>
+                        <li><a href="https://www.instagram.com/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/feed/" target="_blank"><i
+                                    class="fa-brands fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="card section-bg-content">
+                    <div class="card-image">
+                        <img src="../../assets/images/chefs/chefs-2.jpg" alt="chef-Sarah Jhonson">
+                    </div>
+                    <div class="card-content">
+                        <h3>Sarah Jhonson </h3>
+                        <p class="first-p">Patissier </p>
+                        <p><em>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit
+                                corporis. Voluptate sed quas reiciendis animi neque sapiente. </em></p>
+                    </div>
+                    <ul class="hover_links">
+                        <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="http://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        </li>
+                        <li><a href="https://www.instagram.com/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/feed/" target="_blank"><i
+                                    class="fa-brands fa-linkedin"></i></a></li>
+                    </ul>
+
+                </div>
+                <div class="card section-bg-content">
+                    <div class="card-image">
+                        <img src="../../assets/images/chefs/chefs-3.jpg" alt="chef-William Anderson">
+                    </div>
+                    <div class="card-content">
+                        <h3>William Anderson </h3>
+                        <p class="first-p">Cook </p>
+                        <p><em>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates
+                                enim
+                                aut architecto porro aspernatur molestiae modi. </em></p>
+                    </div>
+                    <ul class="hover_links">
+                        <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="http://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        </li>
+                        <li><a href="https://www.instagram.com/" target="_blank"><i
+                                    class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="https://www.linkedin.com/feed/" target="_blank"><i
+                                    class="fa-brands fa-linkedin"></i></a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-------------------------- End chefs -------------------------->
+
+    <!-------------------------- Start Gallery -------------------------->
+    <div id="gallery" class="section-bg">
+        <div class="container margin-container">
+            <div class="main-title">
+                <h2>Gallery</h2>
+                <p>Check<span> Our Gallery</p>
+            </div>
+
+            <div class="gallery-photos">
+                <div class="pizza">
+                    <img src="../../assets/images/gallery/meal-1.jpg" alt="pizza">
+                    <div class="layer">
+                        <h2 class="meal-name">Pizza</h2>
+                        <p class="meal-dec"> Hawaiian pi zza with ham and pineapple</p>
+                    </div>
+                </div>
+
+                <div class="steak">
+                    <img src="../../assets/images/gallery/meal-2.jpg" alt="steak">
+                    <div class="layer">
+                        <h2 class="meal-name">Beef steaks</h2>
+                        <p class="meal-dec">Tasty beef steaks flying above cast iron grate with fire flames.</p>
+                    </div>
+                </div>
+                <div class="burger">
+                    <img src="../../assets/images/gallery/meal-3.jpg" alt="burger">
+                    <div class="layer">
+                        <h2 class="meal-name">Burger</h2>
+                        <p class="meal-dec"> grass fed bison hamburger with chips & beer</p>
+                    </div>
+                </div>
+                <div class="pizza-slices">
+                    <img src="../../assets/images/gallery/meal-4.jpg" alt="pizza-slices">
+                    <div class="layer">
+                        <h2 class="meal-name">Levitation pizza</h2>
+                        <p class="meal-dec">Levitation pizza on black background.</p>
+                    </div>
+                </div>
+                <div class="fried">
+                    <img src="../../assets/images/gallery/meal-5.jpg" alt="fried">
+                    <div class="layer">
+                        <h2 class="meal-name">Crispy Fried Chicken</h2>
+                        <p class="meal-dec">Golden brown chicken legs with a crunchy coating and juicy meat</p>
+                    </div>
+                </div>
+                <div class="kofta">
+                    <img src="../../assets/images/gallery/meal-5.jpg" alt=" imgProduct">
+                    <div class="layer">
+                        <h2 class="meal-name">Lyulya kebab</h2>
+                        <p class="meal-dec">Tender and juicy skewers of ground lamb or beef, flavored with aromatic
+                            spices and herbs</p>
+                    </div>
+                </div>
+                <div class="omelette">
+                    <img src="../../assets/images/gallery/meal-7.jpg" alt="omelette">
+                    <div class="layer">
+                        <h2 class="meal-name">Frittata</h2>
+                        <p class="meal-dec"> Frittata or potato pie in a ceramic plate</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="px-5 flex justify-between gap-5 flex-wrap">
+            <?php
+            if ($result) {
+                foreach ($result as $row) {
+            ?>
+            <div class="w-full max-w-sm mb-5">
+                <div
+                    class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
+                    <a href="#">
+                        <img class="object-cover w-full h-40 rounded-t-lg"
+                            src="../../assets/images/<?= $row['image'] ?>" alt="product image" />
+                    </a>
+                    <div class="px-5 pb-5 bg-dark">
+
+                        <h5
+                            class="text-xl text-center  font-semibold tracking-tight text-gray-900 dark:text-white pt-4">
+                            <?= $row['name'] ?></h5>
 
 
-	</div>
-	<!-- end forth section  -->
-	<!-- strat five  section  -->
-	<div class="container mt-5 text-center five-section">
-		<h1 class="fst-italic">Our Delicious Offer</h1>
-		<div class="p-5 mt-5 row ">
-			<div class=" offset-lg-2 col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-			<div class="col-lg-1 col-md-3 col-sm-6"><i class="fa-solid fa-plate-wheat"></i></div>
-		</div>
-		<div class="row cards text-start d-flex justify-content-center">
-			<div class="col-lg-6 col-md-12 ">
-				<img src="../../assets/images/menu11.png" alt="menu11 ">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12">
-				<img src="../../assets/images/menu11.png" alt="menu11">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12 ">
-				<img src="../../assets/images/menu11.png" alt="menu11 ">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12">
-				<img src="../../assets/images/menu11.png" alt="menu11">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12 ">
-				<img src="../../assets/images/menu11.png" alt="menu11 ">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12">
-				<img src="../../assets/images/menu11.png" alt="menu11">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12 ">
-				<img src="../../assets/images/menu11.png" alt="menu11 ">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-			<div class="col-lg-6 col-md-12">
-				<img src="../../assets/images/menu11.png" alt="menu11">
-				<h1>Purple Corn Tostada</h1>
-				<p>Lorem Ipsum as their default model text, and a <br> search for sites still in their infancy</p>
-				<span>$ 3.30</span>
-			</div>
-		</div>
-	</div>
-	<!-- end five  section  -->
-	<!-- start sixth  section  -->
-	<div class="px-5 mt-5 sixth-section container-fluid ">
-		<div class="container">
-			<div class="py-4 row d-flex align-items-center py-lg-1">
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>10</span>
-					<p>Award Won</p>
-				</div>
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>100</span>
-					<p>Daily Orders</p>
-				</div>
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>99</span>
-					<p>Members</p>
-				</div>
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>99</span>
-					<p>Menu</p>
-				</div>
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>100</span>
-					<p>Specialities</p>
-				</div>
-				<div class="my-4 col-lg-2 col-md-6 col-sm-12">
-					<span>10</span>
-					<p>Award</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end sixth  section  -->
-	<!-- start seven  section  -->
-	<div class="container mt-5 seven-section">
-		<h1 class="my-5">What Our Client Say</h1>
-		<div class="row">
-			<div class="col-md-6 col-sm-12 me-md-4">
-				<img src="../../assets/images/comment.png" alt="">
-				<p>I recently had the pleasure of dining at RestIAM, and I
-					can't say enough about how wonderful the experience was.
-					From the moment I walked in, I felt welcomed and well taken
-					care of.</p>
-				<span>Culinary Delight!</span>
-			</div>
-			<div class="col-md-6 col-sm-12">
-				<img src="../../assets/images/comment.png" alt="">
-				<p>I recently had the pleasure of dining at RestIAM, and I
-					can't say enough about how wonderful the experience was.
-					From the moment I walked in, I felt welcomed and well taken
-					care of.</p>
-				<span>Culinary Delight!</span>
-			</div>
-			<span class="sin "><img src="../../assets/images/sin.png" alt="sin"></span>
-		</div>
+                        <div class="flex items-center justify-between mt-5">
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white"><?= $row['price'] ?>$</span>
+                            <form method="post">
+                                <input type="hidden" value="<?= $row['id'] ?>" class='bg-dark w-1/2' name="id" />
+                                <input type="number" value="1" class='bg-dark w-1/2' name="quantity" min=1 max=5 />
+                                <button type="submit" name="add"
+                                    class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm p-2.5 ms-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+                }
+            }
+            ?>
+        </div>
 
-	</div>
-	<!-- end seven  section  -->
-	<!-- start last  section  -->
-	<div class="last-section container-fluid ">
-		<div class="container">
-			<div class="row ">
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award1.png" alt="award1"></div>
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award2.png" alt="award2JG"></div>
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award3.png" alt="award6t"></div>
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award4.png" alt="awardizydf"></div>
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award5.png" alt="awarddiyf"></div>
-				<div class="my-5 col-lg-2 col-md-6 col-sm-12"><img src="../../assets/images/award1.png" alt="award1sj"></div>
-			</div>
-		</div>
-	</div>
-	<!-- end last  section  -->
 
-	<!-- start footer  section  -->
-	<footer class="container-fluid ">
-		<div class="container">
-			<div class="p-5 row">
-				<div class="col-lg-3 col-md-6 col-sm-12">
-					<ul class="first-list">
-						<li>CONTACT</li>
-						<li> <i class="fa-solid fa-location-dot"></i> &nbsp; &nbsp;1247/Plot No. 39, Phase, </li>
-						<li class="d-flex align-items-center "><i class="fa-solid fa-phone-volume "></i> &nbsp;
-							&nbsp;+91 987-654-3210 <br>
-							&nbsp; &nbsp;+91123-456-7890</li>
-						<li class="d-flex align-items-center"> <i class="fa-regular fa-envelope"></i> &nbsp; &nbsp;
-							example@gmail.com</li>
-						<li>
-							<form action="">
-								<input type="email" placeholder="       Enter Your Email">
-								<input type="submit" value="Send">
-							</form>
-						</li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12">
-					<ul>
-						<li>OUR LINKS</li>
-						<li>Home</li>
-						<li>About Us</li>
-						<li>Services</li>
-						<li>Team</li>
-						<li>Blog</li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12">
-					<ul>
-						<li>OUR SERVICES</li>
-						<li>Strategy & research</li>
-						<li>Fast delivery </li>
-						<li>Set reservation</li>
-						<li>Pick up in Store</li>
-						<li>Our Menu</li>
-					</ul>
-				</div>
-				<div class="col-lg-3 col-md-6 col-sm-12">
-					<ul>
-						<li>HELP CENTER</li>
-						<li>FAQ</li>
-						<li>Shop </li>
-						<li>Category Filter</li>
-						<li>Testimonials</li>
-						<li>Contact</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- end footer  section  -->
-	<div class="spiner">
-		<img src="../../assets/images/logo3.png" alt="logo">
-	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-		crossorigin="anonymous"></script>
-	<script src="../../assets/js/home.js"></script>
+    </div>
+    <!-------------------------- End Gallery -------------------------->
+    <div class=" bg-slate-950 ">
+
+
+
+
+
+
+
+    </div>
+
+    <!-- Main modal -->
+    <div id=" default-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-dark">
+        <div class="relative p-4 w-full max-w-2xl max-h-full ">
+            <!-- Modal content -->
+            <div class="relative bg-dark rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Card Shop
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="default-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        With less than a month to go before the European Union enacts new
+                        consumer privacy laws for its
+                        citizens, companies around the world are updating their terms of service
+                        agreements to comply.
+                    </p>
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes
+                        into effect on May 25
+                        and is meant to ensure a common set of data rights in the European
+                        Union. It requires
+                        organizations to notify users as soon as possible of high-risk data
+                        breaches that could
+                        personally affect them.
+                    </p>
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="default-modal" type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">I
+                        accept</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-------------------------- End Footer -------------------------->
+
+    <!-------------------------- JavaScript -------------------------->
+    <script src="../../assets/js/home.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon-1.3.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+    <script>
+    // Add dark mode
+    let toggleButton = document.querySelector(".toggle");
+    let bodyEl = document.querySelector("body");
+
+    toggleButton.onclick = function() {
+        bodyEl.classList.toggle("dark");
+        toggleButton.classList.toggle("fa-solid");
+        toggleButton.classList.toggle("fa-moon");
+        toggleButton.classList.toggle("fa-regular");
+        toggleButton.classList.toggle("fa-sun");
+    };
+
+    // Add SideMenu Bar
+    let toggleMenu = document.querySelector(".fa-bars");
+    let openLinks = document.querySelector(".links");
+    let nav = document.querySelector(".navbar");
+    toggleMenu.onclick = function() {
+        openLinks.classList.toggle("open-links");
+        nav.classList.toggle("navbar_bg_remove");
+    };
+
+    // Remove SideMenu Bar
+    let xButton = document.querySelector(".fa-xmark");
+    let closeNavbar = document.querySelector(".links");
+    xButton.onclick = function() {
+        closeNavbar.classList.remove("open-links");
+        nav.classList.toggle("navbar_bg_remove");
+    };
+    </script>
 </body>
 
 </html>
