@@ -3,19 +3,20 @@
 include __DIR__ . '/../model/commend.php';
 
 
-$error = array(
-    'name' => '',
-    'price' => '',
-    'image' => '',
-    'role' => '',
-    'selectMenu' => ''
-);
+// $error = array(
+//     'name' => '',
+//     'price' => '',
+//     'image' => '',
+//     'role' => '',
+//     'selectMenu' => ''
+// );
 
 // if (!function_exists('all')) {
 function allCommend()
 {
     global $conn;
-    $stmt = $conn->prepare(allPlate());
+    $stmt = $conn->prepare(allCommendUser());
+    $stmt->bind_param("i", $_SESSION['id']);
     $stmt->execute();
     $result = $stmt->get_result();
     $numRows = $result->num_rows;
@@ -37,15 +38,27 @@ function addCommend($quantity, $plate, $order, $client)
     global $error;
     global $check;
 
+    // Check if the plate_id exists in the plate table
+    // $checkPlateQuery = $conn->prepare("SELECT id FROM plate WHERE id = ?");
+    // $checkPlateQuery->bind_param("i", $plate);
+    // $checkPlateQuery->execute();
+    // $checkPlateQuery->store_result();
 
+    // if ($checkPlateQuery->num_rows > 0) {
+        // Plate_id exists, proceed with the commend insertion
+        $stmt = $conn->prepare(createUserCommend());
+        $stmt->bind_param("iiii", $quantity, $plate, $order, $client);
+        $stmt->execute();
+        $stmt->close();
+        $check = "success";
+    // } else {
+    //     // Plate_id does not exist, handle the error accordingly
+    //     $error = "Plate_id does not exist";
+    // }
 
-
-    $stmt = $conn->prepare(createUserCommend());
-    $stmt->bind_param("iiii", $quantity, $plate, $order, $client);
-    $stmt->execute();
-    $stmt->close();
-    $check = "success";
+    // $checkPlateQuery->close();
 }
+
 
 // function edit($id)
 // {

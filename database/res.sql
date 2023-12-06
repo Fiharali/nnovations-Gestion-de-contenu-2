@@ -53,9 +53,11 @@ CREATE table
         id INT PRIMARY KEY AUTO_INCREMENT,
         quantity VARCHAR(255),
         plate_id INT,
-        order_id INT,
+        order_id INT ,
+        client_id INT ,
         Foreign Key (plate_id) REFERENCES plate(id) ON DELETE CASCADE on UPDATE cascade,
-        Foreign Key (order_id) REFERENCES orders(id) ON DELETE CASCADE on UPDATE cascade
+        Foreign Key (order_id) REFERENCES orders(id) ON DELETE CASCADE on UPDATE cascade,
+        Foreign Key (client_id) REFERENCES users(id) ON DELETE CASCADE on UPDATE cascade
     )
 
 

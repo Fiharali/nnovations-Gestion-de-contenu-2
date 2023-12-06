@@ -7,11 +7,15 @@ include '../../app/controllers/commend.php';
 
 $result = all();
 
-if(isset($_POST['add'])){
-    addCommend($_POST['quantity'],$_POST['quantity'],$_POST['quantity'],$_POST['quantity']);
+if (isset($_POST['add'])) {
+    addCommend($_POST['quantity'], $_POST['id'], null, $_SESSION['id']);
 }
 
-
+$commends = []; 
+if ($SESSION['name']!="") {
+    $commends=allCommend();
+// var_dump($commends);
+}
 
 ?>
 <!DOCTYPE html>
@@ -49,12 +53,14 @@ if(isset($_POST['add'])){
                 <li><a href="#chefs">Chefs</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li data-modal-target="default-modal" data-modal-toggle="default-modal">
+                <button data-modal-target="default-modal" data-modal-toggle="default-modal" type="button">
+
                     <lord-icon src="https://cdn.lordicon.com/cosvjkbu.json" trigger="loop" delay="1000"
                         style="width:40px;height:40px">
                     </lord-icon>
-                </li>
+                </button>
             </ul>
+
 
             <div class="mode">
 
@@ -68,7 +74,7 @@ if(isset($_POST['add'])){
 
                 <?php } else { ?>
                 <button type="button"
-                    class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"><a
+                    class="focus:outline-none hover:text-slate-50 text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 hover:text-slate-50"><a
                         href="../auth/login.php">Login</a></button>
                 <?php
 
@@ -174,7 +180,7 @@ if(isset($_POST['add'])){
                     <ul class="hover_links">
                         <li><a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
                         <li><a href="http://facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                        </li>
+                            L </li>
                         <li><a href="https://www.instagram.com/" target="_blank"><i
                                     class="fa-brands fa-instagram"></i></a></li>
                         <li><a href="https://www.linkedin.com/feed/" target="_blank"><i
@@ -293,26 +299,15 @@ if(isset($_POST['add'])){
 
     </div>
     <!-------------------------- End Gallery -------------------------->
-    <div class=" bg-slate-950 ">
-
-
-
-
-
-
-
-    </div>
-
-    <!-- Main modal -->
-    <div id=" default-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full  bg-dark">
-        <div class="relative p-4 w-full max-w-2xl max-h-full ">
+    <div id="default-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
             <!-- Modal content -->
             <div class="relative bg-dark rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Card Shop
+                        Terms of Service
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -327,21 +322,41 @@ if(isset($_POST['add'])){
                 </div>
                 <!-- Modal body -->
                 <div class="p-4 md:p-5 space-y-4">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        With less than a month to go before the European Union enacts new
-                        consumer privacy laws for its
-                        citizens, companies around the world are updating their terms of service
-                        agreements to comply.
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes
-                        into effect on May 25
-                        and is meant to ensure a common set of data rights in the European
-                        Union. It requires
-                        organizations to notify users as soon as possible of high-risk data
-                        breaches that could
-                        personally affect them.
-                    </p>
+                    <?php
+            if ($commends) {
+                foreach ($commends as $row) {
+            ?>
+                    <div class="w-full max-w-sm mb-5 mx-auto">
+                        <div
+                            class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 h-full">
+                            <a href="#">
+                                <img class="object-cover w-full h-40 rounded-t-lg"
+                                    src="../../assets/images/<?= $row['image'] ?>" alt="product image" />
+                            </a>
+                            <div class="px-5 pb-5 bg-dark">
+
+                                <h5
+                                    class="text-xl text-center  font-semibold tracking-tight text-gray-900 dark:text-white pt-4">
+                                    <?= $row['name'] ?></h5>
+
+
+                                <div class="flex items-center justify-between mt-5 text-center mx-auto">
+                                    <span
+                                        class="text-3xl font-bold text-gray-900 dark:text-white text-center mx-auto"><?= $row['price'] ?>$</span>
+                                    <form method="post">
+                                        <input type="hidden" value="<?= $row['id'] ?>" class='bg-dark w-1/2'
+                                            name="id" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }else{
+                echo 'no items';
+            }
+            ?>
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -353,6 +368,9 @@ if(isset($_POST['add'])){
             </div>
         </div>
     </div>
+
+    <!-- Main modal -->
+
 
 
 
