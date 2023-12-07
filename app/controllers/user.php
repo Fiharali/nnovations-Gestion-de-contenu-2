@@ -153,6 +153,7 @@ function delete($id)
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->close();
+  
     header('location:index.php');
 }
 

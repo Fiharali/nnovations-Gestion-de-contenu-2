@@ -15,9 +15,11 @@ if ($_SESSION['lang'] == 'en') {
     require 'lang/fr.php';
 }
 // $_SESSION[ 'name' ] = '';
-// if (empty($_SESSION['name'])) {
-//     header('Location:/youcode/dash/views/auth/login.php');
-// }
+if (empty($_SESSION['name'])) {
+    header('Location:/youcode/dash/views/auth/login.php');
+}elseif($_SESSION['role']!=1){
+    header('Location:/youcode/dash/views/client/index.php');
+}
 
 ?>
 <!DOCTYPE html>
