@@ -12,7 +12,7 @@ if (isset($_POST['add'])) {
 }
 
 $commends = []; 
-if (empty($_SESSION['name'])) {
+if (!empty($_SESSION['name'])) {
     $commends=allCommend();
 // var_dump($commends);
 }
